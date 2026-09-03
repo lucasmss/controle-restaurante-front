@@ -1,14 +1,14 @@
 import { Component, OnInit} from '@angular/core';
 import { ConsumoService } from '../../services/consumo';
 import { Mesa } from '../../models/mesa.model';
-import { DecimalPipe } from '@angular/common';
+
 
 @Component({
-  imports: [DecimalPipe],
+  imports: [],
   selector: 'app-mesas',
   styleUrl: './mesas.css',
   templateUrl: './mesas.html',
-  providers: [DecimalPipe],
+  providers: [],
 })
 export class MesasComponent implements OnInit {
   constructor(private consumoService: ConsumoService) {}
