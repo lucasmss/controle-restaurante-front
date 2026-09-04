@@ -12,4 +12,8 @@ export class ConsumoService {
     getMesas() {
         return this.http.get<Mesa[]>("http://localhost:8080/mesas/disponiveis");
     }
+
+    postConsumo(mesaId: number) {
+        return this.http.post(`http://localhost:8080/mesas/${mesaId}/consumos`, {});
+    }
 }

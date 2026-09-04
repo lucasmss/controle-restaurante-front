@@ -22,29 +22,62 @@
 </header>
 
 <main>
-  <div class="container-fluid">
 
-    <h1 class="text-center">Mesas Disponíveis</h1>
+  <div class="container py-4">
 
-    <table class="table table-dark table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Número</th>
-        </tr>
-      </thead>
+    <h1 class="text-center mb-2">
+      Mesas
+    </h1>
 
-      <tbody>
-        @for (mesa of mesas; track mesa.numero; let i = $index) {
-          <tr>
-            <th scope="row">{{ i + 1 }}</th>
-            <td>Mesa {{ mesa.numero }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
+    <p class="text-center text-muted mb-4">
+      Selecione uma mesa para abrir um consumo
+    </p>
+
+    <div class="row g-4">
+
+      @for (mesa of mesas; track mesa.id) {
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+          <div class="card mesa-disponivel h-100 shadow-sm">
+
+            <div class="card-body text-center">
+
+              <div class="mesa-icone">
+                🍽️
+              </div>
+
+              <h3 class="card-title">
+                Mesa {{ mesa.numero }}
+              </h3>
+
+              <p class="card-text">
+                Disponível
+              </p>
+
+              <button
+                class="btn btn-success"
+                (click)="abrirConsumo(mesa.id )">
+
+                Abrir consumo
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
 
   </div>
+
 </main>
+<footer class="bg-dark text-white text-center py-3">
+  <p>&copy; 2026 Cafe Du Lucas. Todos os direitos reservados.</p>
+</footer>
 </body>
 </html> 

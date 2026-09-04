@@ -25,6 +25,12 @@ export class MesasComponent implements OnInit {
     });
   }
 
+  abrirConsumo(mesaId: number) {
+    this.consumoService.postConsumo(mesaId).subscribe((res) => {
+
+    });
+}
+
 
 }
 
