@@ -1,28 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesas Disponíveis</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
 <header>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-	<div class="container">
-		<a class="navbar-brand" href="#">Cafe Du Lucas</a>
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        Cafe Du Lucas
+      </a>
 
-		<div class="navbar-nav ms-auto">
-			<a class="nav-link" href="#">Home</a>
-			<a class="nav-link" href="#">Sobre</a>
-			<a class="nav-link" href="#">Contato</a>
-		</div>
-	</div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="#">Sobre</a>
+        <a class="nav-link" href="#">Contato</a>
+      </div>
+    </div>
   </nav>
 </header>
 
 <main>
-
   <div class="container py-4">
 
     <h1 class="text-center mb-2">
@@ -35,11 +27,15 @@
 
     <div class="row g-4">
 
-      @for (mesa of mesas; track mesa.id) {
+      @for (mesa of mesas(); track mesa.id) {
 
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
 
-          <div class="card mesa-disponivel h-100 shadow-sm">
+          <div
+            class="card h-100 shadow-sm"
+            [class.mesa-disponivel]="!mesaOcupada(mesa.id)"
+            [class.mesa-ocupada]="mesaOcupada(mesa.id)"
+          >
 
             <div class="card-body text-center">
 
@@ -52,17 +48,28 @@
               </h3>
 
               <p class="card-text">
-                Disponível
+                 @if (mesaOcupada(mesa.id)) {
+                  Ocupada
+                } @else {
+                  Disponível
+                }
               </p>
+
+            @if (mesaOcupada(mesa.id)) {
+
+              <button class="btn btn-danger">
+                Ver consumo
+              </button>
+
+            } @else {
 
               <button
                 class="btn btn-success"
-                (click)="abrirConsumo(mesa.id )">
-
+                (click)="abrirConsumo(mesa.id)">
                 Abrir consumo
-
               </button>
 
+            }
             </div>
 
           </div>
@@ -74,10 +81,8 @@
     </div>
 
   </div>
-
 </main>
+
 <footer class="bg-dark text-white text-center py-3">
   <p>&copy; 2026 Cafe Du Lucas. Todos os direitos reservados.</p>
 </footer>
-</body>
-</html> 
