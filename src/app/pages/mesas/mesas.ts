@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { ConsumoService } from '../../services/consumo';
 import { Mesa } from '../../models/mesa.model';
 import { Consumo } from '../../models/consumo.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Consumo } from '../../models/consumo.model';
   providers: [],
 })
 export class MesasComponent implements OnInit {
-  constructor(private consumoService: ConsumoService) {}
+  constructor(private consumoService: ConsumoService, private router: Router) {}
 
   mesas = signal<Mesa[]>([]);
   consumosAbertos = signal<Consumo[]>([]);
@@ -24,13 +25,13 @@ export class MesasComponent implements OnInit {
 
   carregarMesas() {
     this.consumoService.getMesas().subscribe((mesas) => {
-      this.mesas.set(mesas);
+    this.mesas.set(mesas);
     });
   }
 
   carregarConsumosAbertos() {
-    this.consumoService.getMesasOcupada().subscribe((consumos) => {
-      this.consumosAbertos.set(consumos);
+    this.consumoService.getConsumosAbertos().subscribe((consumos) => {
+    this.consumosAbertos.set(consumos);
     });
   }
 
@@ -46,6 +47,13 @@ export class MesasComponent implements OnInit {
     });
 }
 
+  consumosPagina() {
+    this.router.navigate(['/consumos']);
+  }
+
+  consumoMesaPagina(consumoId: number){
+    this.router.navigate([consumoId,'/consumo']);
+  }
 
 }
 

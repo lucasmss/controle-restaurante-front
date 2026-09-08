@@ -9,7 +9,7 @@
         <a class="nav-link" href="#">Home</a>
         <a class="nav-link" href="#">Sobre</a>
         <a class="nav-link" href="#">Contato</a>
-        <a class="nav-link" href="/consumos">Consumos</a>
+        <a class="nav-link" href="/mesas">Mesas</a>
       </div>
     </div>
   </nav>
@@ -19,59 +19,46 @@
   <div class="container py-4">
 
     <h1 class="text-center mb-2">
-      Mesas
+      Consumos
     </h1>
 
     <p class="text-center text-muted mb-4">
-      Selecione uma mesa para abrir um consumo
+      Consumos abertos
     </p>
 
     <div class="row g-4">
 
-      @for (mesa of mesas(); track mesa.id) {
+      @for (consumo of consumosAbertos(); track consumo.id) {
 
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
 
           <div
-            class="card h-100 shadow-sm"
-            [class.mesa-disponivel]="!mesaOcupada(mesa.id)"
-            [class.mesa-ocupada]="mesaOcupada(mesa.id)"
-          >
+            class="card h-100 shadow-sm mesa-disponivel"
+            >
 
             <div class="card-body text-center">
 
-              <div class="mesa-icone">
-                🍽️
-              </div>
-
               <h3 class="card-title">
-                Mesa {{ mesa.numero }}
+                Mesa {{ consumo.mesa.numero }}
               </h3>
 
-              <p class="card-text">
-                 @if (mesaOcupada(mesa.id)) {
-                  Ocupada
-                } @else {
-                  Disponível
-                }
-              </p>
-
-            @if (mesaOcupada(mesa.id)) {
-
-              <button class="btn btn-danger"
-              (click)="consumosPagina()">
-                Ver consumo
-              </button>
-
-            } @else {
+              <h5 class="card-text">
+                {{ consumo.status }}
+              </h5>
 
               <button
                 class="btn btn-success"
-                (click)="abrirConsumo(mesa.id)">
-                Abrir consumo
+                (click)="adicionarPedido()">
+                Adicionar Pedido
               </button>
 
-            }
+               <button
+                class="btn btn-success"
+                (click)="consumoMesaPagina(consumo.id)">
+                Ver Consumo
+              </button>
+
+    
             </div>
 
           </div>

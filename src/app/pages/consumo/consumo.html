@@ -1,0 +1,72 @@
+@if (consumo(); as c) {
+
+  <div class="container py-4">
+
+    <h1 class="text-center">
+      Consumo - Mesa {{ c.mesa.numero }}
+    </h1>
+
+    <p class="text-center text-muted">
+      Consumo #{{ c.id }}
+    </p>
+
+    <div class="card shadow-sm">
+
+      <div class="card-header bg-dark text-white">
+        Mesa {{ c.mesa.numero }}
+      </div>
+
+      <div class="card-body">
+
+        <table class="table table-striped">
+
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Abertura</th>
+              <th>Status</th>
+              <th>Taxa de serviço</th>
+              <th>Valor consumido</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+
+              <td>{{ c.id }}</td>
+
+              <td>{{ c.dataAbertura }}</td>
+
+              <td>
+                <span class="badge bg-success">
+                  {{ c.status }}
+                </span>
+              </td>
+
+              <td>
+                {{ c.taxaServicoAceita ? 'Sim' : 'Não' }}
+              </td>
+
+              <td>
+                R$ {{ c.valorConsumido ?? 0 }}
+              </td>
+
+              <td>
+                <strong>
+                  R$ {{ c.valorTotal ?? 0 }}
+                </strong>
+              </td>
+
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+}
