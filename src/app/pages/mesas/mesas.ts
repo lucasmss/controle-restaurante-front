@@ -4,7 +4,6 @@ import { Mesa } from '../../models/mesa.model';
 import { Consumo } from '../../models/consumo.model';
 import { Router } from '@angular/router';
 
-
 @Component({
   imports: [],
   selector: 'app-mesas',
@@ -35,7 +34,7 @@ export class MesasComponent implements OnInit {
     });
   }
 
-    mesaOcupada(mesaId: number): boolean {
+  mesaOcupada(mesaId: number): boolean {
     return this.consumosAbertos().some(
       consumo => consumo.mesa.id === mesaId
     );
@@ -49,10 +48,6 @@ export class MesasComponent implements OnInit {
 
   consumosPagina() {
     this.router.navigate(['/consumos']);
-  }
-
-  consumoMesaPagina(consumoId: number){
-    this.router.navigate([consumoId,'/consumo']);
   }
 
 }
