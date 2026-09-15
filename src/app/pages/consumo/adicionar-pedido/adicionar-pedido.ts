@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../../../services/produto';
 import { ConsumoService } from '../../../services/consumo';
 import { Produto } from '../../../models/produto.model';
@@ -11,12 +10,21 @@ import { Produto } from '../../../models/produto.model';
   templateUrl: './adicionar-pedido.html',
 })
 export class AdicionarPedidoComponent implements OnInit {
-  constructor(private http: HttpClient, private produtoService: ProdutoService, private consumoService: ConsumoService) {}
 
-  pedidos: Produto[] = [];
+  constructor(
+    private produtoService: ProdutoService,
+    private consumoService: ConsumoService
+  ) {}
+
+  produtos: Produto[] = [];
 
   ngOnInit() {
-    
+    this.carregarProdutos();
   }
 
+  carregarProdutos() {
+    this.produtoService.getProdutos().subscribe(produtos => {
+      this.produtos = produtos.filter(produto => produto.ativo);
+    });
+  }
 }
