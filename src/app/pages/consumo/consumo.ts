@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ConsumoService } from '../../services/consumo';
 import { Consumo } from '../../models/consumo.model';
+import { Pedido } from '../../models/pedido.model';
 
 @Component({
   imports: [],
@@ -18,6 +19,7 @@ export class ConsumoComponent implements OnInit {
   ) {}
 
   consumo = signal<Consumo | null>(null);
+  pedidos = signal<Pedido[]>([]);
 
   ngOnInit() {
 
@@ -28,6 +30,7 @@ export class ConsumoComponent implements OnInit {
     console.log('ID do consumo:', consumoId);
 
     this.carregarConsumoId(consumoId);
+    this.carregarPedidos(consumoId);
   }
 
   carregarConsumoId(consumoId: number) {
@@ -51,4 +54,27 @@ export class ConsumoComponent implements OnInit {
       });
 
   }
+
+  carregarPedidos(consumoId: number) {
+
+    this.consumoService
+      .getItensPedidos(consumoId)
+      .subscribe({
+        next: (pedidos) => {
+
+          console.log('Pedidos recebidos:', pedidos);
+
+          this.pedidos.set(pedidos);
+
+        },
+
+        error: (erro) => {
+
+          console.error('Erro ao buscar pedidos:', erro);
+
+        }
+      });
+
+  }
+
 }

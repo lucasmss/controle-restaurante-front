@@ -1,4 +1,9 @@
-<div class="modal fade" id="modalAdicionarPedido" tabindex="-1" aria-labelledby="modalAdicionarPedidoLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="modalAdicionarPedido"
+  tabindex="-1"
+  aria-labelledby="modalAdicionarPedidoLabel"
+  aria-hidden="true">
 
   <div class="modal-dialog modal-lg modal-dialog-centered">
 
@@ -6,6 +11,7 @@
 
       <!-- Cabeçalho -->
       <div class="modal-header">
+
         <div>
           <h5 class="modal-title" id="modalAdicionarPedidoLabel">
             Adicionar Pedido
@@ -22,6 +28,7 @@
           data-bs-dismiss="modal"
           aria-label="Fechar">
         </button>
+
       </div>
 
       <!-- Corpo -->
@@ -36,22 +43,26 @@
 
               <!-- Produto -->
               <div class="col">
+
                 <select
                   class="form-select"
-                  [(ngModel)]="item.produtoId">
+                  [value]="item.produtoId ?? ''"
+                  (change)="selecionarProduto(item, $event)">
 
-                  <option [ngValue]="null">
+                  <option value="">
                     Selecione um produto
                   </option>
 
                   @for (produto of produtos; track produto.id) {
-                    <option
-                      [ngValue]="produto.id">
+
+                    <option [value]="produto.id">
                       {{ produto.name }} - R$ {{ produto.preco | number:'1.2-2' }}
                     </option>
+
                   }
 
                 </select>
+
               </div>
 
               <!-- Quantidade -->
@@ -63,27 +74,33 @@
                     type="button"
                     class="btn btn-outline-secondary"
                     (click)="diminuirQuantidade(item)">
+
                     −
+
                   </button>
 
                   <span
                     class="input-group-text justify-content-center"
                     style="min-width: 50px;">
+
                     {{ item.quantidade }}
+
                   </span>
 
                   <button
                     type="button"
                     class="btn btn-outline-secondary"
                     (click)="aumentarQuantidade(item)">
+
                     +
+
                   </button>
 
                 </div>
 
               </div>
 
-              <!-- Remover -->
+              <!-- Remover item -->
               <div class="col-auto">
 
                 <button
@@ -104,7 +121,7 @@
 
         </div>
 
-        <!-- Adicionar nova linha -->
+        <!-- Adicionar novo item -->
         <div class="text-center mt-4">
 
           <button
