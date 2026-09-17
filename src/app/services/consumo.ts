@@ -9,7 +9,7 @@ import { Pedido } from '../models/pedido.model';
 })
 export class ConsumoService {
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     getMesas() {
         return this.http.get<Mesa[]>("http://localhost:8080/mesas");
@@ -37,5 +37,9 @@ export class ConsumoService {
 
     postPedido(consumoId: number, pedido: any) {
         return this.http.post(`http://localhost:8080/consumos/${consumoId}/pedidos`, pedido);
+    }
+
+    postPagamento(consumoId: number, bollean: false) {
+        return this.http.post(`http://localhost:8080/consumos/${consumoId}/pagamento`, false);
     }
 }

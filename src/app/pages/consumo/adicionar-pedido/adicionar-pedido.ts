@@ -24,16 +24,16 @@ export class AdicionarPedidoComponent implements OnInit, OnChanges {
     produtoId: number | null;
     quantidade: number;
   }[] = [
-    {
-      produtoId: null,
-      quantidade: 1
-    }
-  ];
+      {
+        produtoId: null,
+        quantidade: 1
+      }
+    ];
 
   constructor(
     private produtoService: ProdutoService,
     private consumoService: ConsumoService
-  ) {}
+  ) { }
 
   ngOnChanges(changes: SimpleChanges) {
 
@@ -41,7 +41,7 @@ export class AdicionarPedidoComponent implements OnInit, OnChanges {
       this.buscarConsumoDaMesa();
     }
 
-}
+  }
 
   ngOnInit() {
     this.carregarProdutos();

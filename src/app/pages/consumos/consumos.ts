@@ -17,7 +17,7 @@ export class ConsumosComponent implements OnInit {
   constructor(
     private consumoService: ConsumoService,
     private router: Router
-  ) {}
+  ) { }
 
   consumosAbertos = signal<Consumo[]>([]);
 
@@ -37,6 +37,10 @@ export class ConsumosComponent implements OnInit {
 
   consumoMesaPagina(consumoId: number) {
     this.router.navigate([consumoId, 'consumos']);
+  }
+
+  pagarConsumo(consumoId: number) {
+    this.consumoService.postPagamento(consumoId, false).subscribe();
   }
 
   adicionarPedido(mesaNumero: number) {
