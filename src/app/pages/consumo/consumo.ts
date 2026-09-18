@@ -16,7 +16,7 @@ export class ConsumoComponent implements OnInit {
   constructor(
     private consumoService: ConsumoService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   consumo = signal<Consumo | null>(null);
   pedidos = signal<Pedido[]>([]);
@@ -75,6 +75,14 @@ export class ConsumoComponent implements OnInit {
         }
       });
 
+  }
+
+  editarPedido(pedidoId: number) {
+    console.log('Editar pedido com ID:', pedidoId);
+  }
+
+  removerPedido(pedidoId: number) {
+    this.consumoService.deletePedido(pedidoId).subscribe({});
   }
 
 }
