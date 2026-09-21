@@ -32,10 +32,7 @@
         </p>
       </div>
 
-      <button
-        type="button"
-        class="btn btn-success"
-        (click)="adicionarProduto()">
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAdicionarProduto">
         + Adicionar produto
       </button>
 
@@ -61,59 +58,53 @@
 
             @for (produto of cardapio(); track produto.id) {
 
-              <tr>
+            <tr>
 
-                <td>
-                  {{ produto.codigo }}
-                </td>
+              <td>
+                {{ produto.codigo }}
+              </td>
 
-                <td>
-                  <strong>
-                    {{ produto.name }}
-                  </strong>
-                </td>
+              <td>
+                <strong>
+                  {{ produto.name }}
+                </strong>
+              </td>
 
-                <td>
-                  R$ {{ produto.preco }}
-                </td>
+              <td>
+                R$ {{ produto.preco }}
+              </td>
 
-                <td>
+              <td>
 
-                  @if (produto.ativo) {
+                @if (produto.ativo) {
 
-                    <span class="badge bg-success">
-                      Ativo
-                    </span>
+                <span class="badge bg-success">
+                  Ativo
+                </span>
 
-                  } @else {
+                } @else {
 
-                    <span class="badge bg-secondary">
-                      Inativo
-                    </span>
+                <span class="badge bg-secondary">
+                  Inativo
+                </span>
 
-                  }
+                }
 
-                </td>
+              </td>
 
-                <td class="text-center">
+              <td class="text-center">
 
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-primary me-2"
-                    (click)="editarProduto(produto.id)">
-                    ✏️
-                  </button>
+                <button type="button" class="btn btn-sm btn-outline-primary me-2" (click)="editarProduto(produto.id)">
+                  ✏️
+                </button>
 
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-danger"
-                    (click)="excluirProduto(produto.id)">
-                    🗑️
-                  </button>
+                <button type="button" class="btn btn-sm btn-outline-danger" (click)="excluirProduto(produto.id)">
+                  🗑️
+                </button>
 
-                </td>
+              </td>
 
-              </tr>
+            </tr>
 
             }
 
@@ -124,7 +115,7 @@
       </div>
 
     </div>
-
+    <app-adicionar-produto></app-adicionar-produto>
   </div>
 </main>
 

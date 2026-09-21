@@ -39,10 +39,6 @@ export class ConsumoService {
         return this.http.post(`http://localhost:8080/consumos/${consumoId}/pedidos`, pedido);
     }
 
-    postPagamento(consumoId: number, boolean: false) {
-        return this.http.post(`http://localhost:8080/consumos/${consumoId}/pagamento`, false);
-    }
-
     deletePedido(pedidoId: number) {
         return this.http.delete(`http://localhost:8080/pedidos/${pedidoId}`);
     }

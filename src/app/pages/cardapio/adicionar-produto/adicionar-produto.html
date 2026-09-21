@@ -1,0 +1,110 @@
+<div class="modal fade" id="modalAdicionarProduto" tabindex="-1" aria-labelledby="modalAdicionarProdutoLabel"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <!-- Cabeçalho -->
+            <div class="modal-header">
+
+                <div>
+                    <h5 class="modal-title" id="modalAdicionarProdutoLabel">
+                        Adicionar Produto
+                    </h5>
+
+                </div>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar" title="Fechar">
+                </button>
+
+            </div>
+
+            <!-- Corpo -->
+            <div class="modal-body">
+
+                <!-- Lista de itens -->
+                <div class="d-flex flex-column gap-3">
+
+                    @for (produto of inserirProduto; track $index) {
+
+                    <div class="row g-3 align-items-end">
+
+                        <div class="col-md-3">
+                            <label class="form-label">Código</label>
+
+                            <input type="number" class="form-control" [(ngModel)]="produto.codigo">
+                        </div>
+
+                        <div class="col-md-5">
+                            <label class="form-label">Produto</label>
+
+                            <input type="text" class="form-control" [(ngModel)]="produto.name">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Preço</label>
+
+                            <input type="number" class="form-control" [(ngModel)]="produto.preco">
+                        </div>
+
+                        <!-- Remover item -->
+                        <div class="col-auto">
+
+                            <button type="button" class="btn btn-outline-danger" (click)="removerItem($index)"
+                                title="Remover item">
+
+                                🗑️
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    }
+
+                </div>
+
+                <!-- Adicionar novo produto -->
+                <div class="text-center mt-4">
+
+                    <button type="button"
+                        class="btn btn-primary rounded-circle d-inline-flex align-items-center justify-content-center"
+                        style="width: 55px; height: 55px; font-size: 28px;" (click)="adicionarItem()">
+
+                        +
+
+                    </button>
+
+                    <div class="mt-2 text-muted">
+                        Adicionar outro produto
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Rodapé -->
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+
+                    Cancelar
+
+                </button>
+
+                <button type="button" class="btn btn-success" (click)="adicionarProduto()">
+
+                    Adicionar Produto
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

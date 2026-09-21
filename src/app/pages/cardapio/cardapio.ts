@@ -1,16 +1,17 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { ProdutoService } from '../../services/produto';
 import { Produto } from '../../models/produto.model';
+import { AdicionarProdutoComponent } from './adicionar-produto/adicionar-produto';
 
 @Component({
-  imports: [],
+  imports: [AdicionarProdutoComponent],
   selector: 'app-cardapio',
   styleUrl: './cardapio.css',
   templateUrl: './cardapio.html',
 })
 export class CardapioComponent implements OnInit {
 
-  constructor(private produtoService: ProdutoService) {}
+  constructor(private produtoService: ProdutoService) { }
 
   cardapio = signal<Produto[]>([]);
 
@@ -24,10 +25,6 @@ export class CardapioComponent implements OnInit {
     });
   }
 
-  adicionarProduto() {
-    console.log('Adicionar produto');
-  }
-
   editarProduto(produtoId: number) {
     console.log('Editar produto:', produtoId);
   }
@@ -36,5 +33,5 @@ export class CardapioComponent implements OnInit {
     console.log('Excluir produto:', produtoId);
   }
 
-  
+
 }

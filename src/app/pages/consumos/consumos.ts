@@ -5,6 +5,7 @@ import { Consumo } from '../../models/consumo.model';
 
 import { AdicionarPedidoComponent } from '../consumo/adicionar-pedido/adicionar-pedido';
 import { Router } from '@angular/router';
+import { PagamentoService } from '../../services/pagamento';
 
 @Component({
   imports: [AdicionarPedidoComponent],
@@ -16,6 +17,7 @@ export class ConsumosComponent implements OnInit {
 
   constructor(
     private consumoService: ConsumoService,
+    private pagamentoService: PagamentoService,
     private router: Router
   ) { }
 
@@ -40,7 +42,7 @@ export class ConsumosComponent implements OnInit {
   }
 
   pagarConsumo(consumoId: number) {
-    this.consumoService.postPagamento(consumoId, false).subscribe();
+    this.pagamentoService.postPagamento(consumoId, false).subscribe();
   }
 
   adicionarPedido(mesaNumero: number) {
