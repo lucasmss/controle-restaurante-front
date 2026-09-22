@@ -2,9 +2,10 @@ import { Component, OnInit, signal } from '@angular/core';
 import { ProdutoService } from '../../services/produto';
 import { Produto } from '../../models/produto.model';
 import { AdicionarProdutoComponent } from './adicionar-produto/adicionar-produto';
+import { AtualizarProdutoComponent } from './atualizar-produto/atualizar-produto';
 
 @Component({
-  imports: [AdicionarProdutoComponent],
+  imports: [AdicionarProdutoComponent, AtualizarProdutoComponent],
   selector: 'app-cardapio',
   styleUrl: './cardapio.css',
   templateUrl: './cardapio.html',
@@ -12,6 +13,8 @@ import { AdicionarProdutoComponent } from './adicionar-produto/adicionar-produto
 export class CardapioComponent implements OnInit {
 
   constructor(private produtoService: ProdutoService) { }
+
+  produtoSelecionado: Produto | null = null;
 
   cardapio = signal<Produto[]>([]);
 
@@ -21,16 +24,24 @@ export class CardapioComponent implements OnInit {
 
   carregarCardapio() {
     this.produtoService.getProdutos().subscribe((produtos) => {
+
+      produtos.sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
+
       this.cardapio.set(produtos);
+
     });
   }
 
-  editarProduto(produtoId: number) {
-    console.log('Editar produto:', produtoId);
+  editarProduto(produto: Produto) {
+    this.produtoSelecionado = {
+      ...produto
+    };
   }
 
   excluirProduto(produtoId: number) {
-    console.log('Excluir produto:', produtoId);
+    this.produtoService.deleteProduto(produtoId).subscribe(() => {
+      this.carregarCardapio();
+    });
   }
 
 

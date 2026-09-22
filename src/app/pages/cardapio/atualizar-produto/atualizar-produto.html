@@ -1,0 +1,117 @@
+<div class="modal fade" id="modalAtualizarProduto" tabindex="-1" aria-labelledby="modalAtualizarProdutoLabel"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <!-- Cabeçalho -->
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="modalAtualizarProdutoLabel">
+                    Atualizar Produto
+                </h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar">
+                </button>
+
+            </div>
+
+            <!-- Corpo -->
+            <div class="modal-body">
+
+                <div class="row g-3">
+
+                    <!-- ID -->
+                    <div class="col-md-4">
+
+                        <label class="form-label">
+                            ID
+                        </label>
+
+                        <input type="number" class="form-control" [(ngModel)]="atualizaritem.id" disabled>
+
+                    </div>
+
+                    <!-- Código -->
+                    <div class="col-md-4">
+
+                        <label class="form-label">
+                            Código
+                        </label>
+
+                        <input type="number" class="form-control" [(ngModel)]="atualizaritem.codigo">
+
+                    </div>
+
+                    <!-- Status -->
+                    <div class="col-md-4">
+
+                        <label class="form-label">
+                            Status
+                        </label>
+
+                        <select class="form-select" [(ngModel)]="atualizaritem.ativo">
+
+                            <option [ngValue]="true">
+                                Ativo
+                            </option>
+
+                            <option [ngValue]="false">
+                                Inativo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Produto -->
+                    <div class="col-12">
+
+                        <label class="form-label">
+                            Produto
+                        </label>
+
+                        <input type="text" class="form-control" [(ngModel)]="atualizaritem.name">
+
+                    </div>
+
+                    <!-- Preço -->
+                    <div class="col-md-4">
+
+                        <label class="form-label">
+                            Preço
+                        </label>
+
+                        <input type="number" step="0.01" class="form-control" [(ngModel)]="atualizaritem.preco">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Rodapé -->
+            <div class="modal-footer">
+
+                <button id="btnFecharModalAtualizarProduto" type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal" aria-label="Fechar">
+
+                    Cancelar
+
+                </button>
+
+                <button type="button" class="btn btn-success"
+                    (click)="atualizarProduto(atualizaritem.id!, atualizaritem)">
+
+                    Atualizar Produto
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

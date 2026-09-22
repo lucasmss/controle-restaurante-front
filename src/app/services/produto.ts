@@ -12,8 +12,17 @@ export class ProdutoService {
         return this.http.get<Produto[]>("http://localhost:8080/produtos");
     }
 
-    postProduto(produto: Produto) {
-        return this.http.post("http://localhost:8080/produtos", produto);
+    putProduto(produtoId: number, produto: Produto) {
+        return this.http.put<Produto>(`http://localhost:8080/produtos/${produtoId}`, produto);
     }
+
+    postProduto(produto: Produto) {
+        return this.http.post<Produto>("http://localhost:8080/produtos", produto);
+    }
+
+    deleteProduto(produtoId: number) {
+        return this.http.delete(`http://localhost:8080/produtos/${produtoId}`);
+    }
+
 
 }
