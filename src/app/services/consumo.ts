@@ -15,6 +15,9 @@ export class ConsumoService {
         return this.http.get<Mesa[]>("http://localhost:8080/mesas");
     }
 
+    getConsumoByMesaId(mesaId: number) {
+        return this.http.get<Consumo>(`http://localhost:8080/mesas/${mesaId}/consumo`);
+    }
     getConsumosAbertos() {
         return this.http.get<Consumo[]>("http://localhost:8080/mesas/consumos");
     }

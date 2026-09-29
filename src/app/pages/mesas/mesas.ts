@@ -44,9 +44,11 @@ export class MesasComponent implements OnInit {
     this.consumoService.postConsumo(mesaId).subscribe((res) => { });
   }
 
-  consumosPagina() {
-    this.router.navigate(['/consumos']);
-  }
+  consumoPagina(mesaId: number) {
+    this.consumoService.getConsumoByMesaId(mesaId).subscribe((consumo) => {
+      this.router.navigate([consumo.id, 'consumos']);
+    });
 
+  }
 }
 
