@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ConsumoService } from '../../services/consumo';
 import { Consumo } from '../../models/consumo.model';
 import { Pedido } from '../../models/pedido.model';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
-  imports: [],
+  imports: [CurrencyPipe, DatePipe],
   selector: 'app-consumo',
   styleUrl: './consumo.css',
   templateUrl: './consumo.html',
@@ -15,7 +16,7 @@ export class ConsumoComponent implements OnInit {
 
   constructor(
     private consumoService: ConsumoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   consumo = signal<Consumo | null>(null);

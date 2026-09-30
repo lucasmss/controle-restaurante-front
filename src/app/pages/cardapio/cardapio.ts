@@ -3,9 +3,10 @@ import { ProdutoService } from '../../services/produto';
 import { Produto } from '../../models/produto.model';
 import { AdicionarProdutoComponent } from './adicionar-produto/adicionar-produto';
 import { AtualizarProdutoComponent } from './atualizar-produto/atualizar-produto';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
-  imports: [AdicionarProdutoComponent, AtualizarProdutoComponent],
+  imports: [AdicionarProdutoComponent, AtualizarProdutoComponent, CurrencyPipe],
   selector: 'app-cardapio',
   styleUrl: './cardapio.css',
   templateUrl: './cardapio.html',

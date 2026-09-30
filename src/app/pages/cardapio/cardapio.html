@@ -71,7 +71,7 @@
               </td>
 
               <td>
-                R$ {{ produto.preco }}
+                {{ (produto.preco ?? 0) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
               </td>
 
               <td>

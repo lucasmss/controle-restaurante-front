@@ -63,7 +63,7 @@
               </td>
 
               <td>
-                {{ c.dataAbertura }}
+                {{ c.dataAbertura | date:'dd/MM/yyyy - HH:mm:ss' }}
               </td>
 
               <td>
@@ -77,16 +77,16 @@
               </td>
 
               <td>
-                R$ {{ c.valorConsumido ?? 0 }}
+                {{ (c.valorConsumido ?? 0) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
               </td>
 
               <td>
-                R$ {{ c.valorTaxaServico ?? 0 }}
+                {{ (c.valorTaxaServico ?? 0) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
               </td>
 
               <td>
                 <strong>
-                  R$ {{ c.valorTotal ?? 0 }}
+                  {{ (c.valorTotal ?? 0) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
                 </strong>
               </td>
 
@@ -144,15 +144,15 @@
               </td>
 
               <td>
-                {{ item.quantidade }}
+                {{ (item.quantidade ?? 0) }}
               </td>
 
               <td>
-                R$ {{ item.precoUnitario }}
+                {{ (item.precoUnitario ?? 0) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
               </td>
 
               <td>
-                R$ {{ item.precoUnitario * item.quantidade }}
+                {{ ((item.precoUnitario ?? 0) * (item.quantidade ?? 0)) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
               </td>
 
               <td class="text-center">
