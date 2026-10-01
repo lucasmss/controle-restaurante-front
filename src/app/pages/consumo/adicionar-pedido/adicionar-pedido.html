@@ -1,8 +1,4 @@
-<div
-  class="modal fade"
-  id="modalAdicionarPedido"
-  tabindex="-1"
-  aria-labelledby="modalAdicionarPedidoLabel"
+<div class="modal fade" id="modalAdicionarPedido" tabindex="-1" aria-labelledby="modalAdicionarPedidoLabel"
   aria-hidden="true">
 
   <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -22,11 +18,7 @@
           </small>
         </div>
 
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Fechar">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar">
         </button>
 
       </div>
@@ -39,83 +31,68 @@
 
           @for (item of itensPedido; track $index) {
 
-            <div class="row align-items-center g-2">
+          <div class="row align-items-center g-2">
 
-              <!-- Produto -->
-              <div class="col">
+            <!-- Produto -->
+            <div class="col">
 
-                <select
-                  class="form-select"
-                  [value]="item.produtoId ?? ''"
-                  (change)="selecionarProduto(item, $event)">
+              <select class="form-select" [value]="item.produtoId ?? ''" (change)="selecionarProduto(item, $event)">
 
-                  <option value="">
-                    Selecione um produto
-                  </option>
+                <option value="">
+                  Selecione um produto
+                </option>
 
-                  @for (produto of produtos; track produto.id) {
+                @for (produto of produtos; track produto.id) {
 
-                    <option [value]="produto.id">
-                      {{ produto.name }} - R$ {{ produto.preco | number:'1.2-2' }}
-                    </option>
+                <option [value]="produto.id">
+                  {{ produto.name }} - R$ {{ produto.preco | number:'1.2-2' }}
+                </option>
 
-                  }
+                }
 
-                </select>
+              </select>
 
-              </div>
+            </div>
 
-              <!-- Quantidade -->
-              <div class="col-auto">
+            <!-- Quantidade -->
+            <div class="col-auto">
 
-                <div class="input-group">
+              <div class="input-group">
 
-                  <button
-                    type="button"
-                    class="btn btn-outline-secondary"
-                    (click)="diminuirQuantidade(item)">
+                <button type="button" class="btn btn-outline-secondary" (click)="diminuirQuantidade(item)">
 
-                    −
+                  −
 
-                  </button>
+                </button>
 
-                  <span
-                    class="input-group-text justify-content-center"
-                    style="min-width: 50px;">
+                <span class="input-group-text justify-content-center" style="min-width: 50px;">
 
-                    {{ item.quantidade }}
+                  {{ item.quantidade }}
 
-                  </span>
+                </span>
 
-                  <button
-                    type="button"
-                    class="btn btn-outline-secondary"
-                    (click)="aumentarQuantidade(item)">
+                <button type="button" class="btn btn-outline-secondary" (click)="aumentarQuantidade(item)">
 
-                    +
-
-                  </button>
-
-                </div>
-
-              </div>
-
-              <!-- Remover item -->
-              <div class="col-auto">
-
-                <button
-                  type="button"
-                  class="btn btn-outline-danger"
-                  (click)="removerItem($index)"
-                  title="Remover item">
-
-                  🗑️
+                  +
 
                 </button>
 
               </div>
 
             </div>
+
+            <!-- Remover item -->
+            <div class="col-auto">
+
+              <button type="button" class="btn btn-outline-danger" (click)="removerItem($index)" title="Remover item">
+
+                🗑️
+
+              </button>
+
+            </div>
+
+          </div>
 
           }
 
@@ -124,11 +101,9 @@
         <!-- Adicionar novo item -->
         <div class="text-center mt-4">
 
-          <button
-            type="button"
+          <button type="button"
             class="btn btn-primary rounded-circle d-inline-flex align-items-center justify-content-center"
-            style="width: 55px; height: 55px; font-size: 28px;"
-            (click)="adicionarItem()">
+            style="width: 55px; height: 55px; font-size: 28px;" (click)="adicionarItem()">
 
             +
 
@@ -145,19 +120,13 @@
       <!-- Rodapé -->
       <div class="modal-footer">
 
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
 
           Cancelar
 
         </button>
 
-        <button
-          type="button"
-          class="btn btn-success"
-          (click)="fazerPedido()">
+        <button type="button" class="btn btn-success" (click)="fazerPedido()">
 
           Fazer pedido
 

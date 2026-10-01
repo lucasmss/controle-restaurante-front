@@ -19,6 +19,7 @@ export class AdicionarPedidoComponent implements OnInit, OnChanges {
   produtos: Produto[] = [];
 
   consumoId: number | null = null;
+  mesaId: number | null = null;
 
   itensPedido: {
     produtoId: number | null;
@@ -64,6 +65,7 @@ export class AdicionarPedidoComponent implements OnInit, OnChanges {
 
       if (consumo) {
         this.consumoId = consumo.id;
+        this.mesaId = consumo.mesa.id;
       }
 
     });
@@ -131,6 +133,9 @@ export class AdicionarPedidoComponent implements OnInit, OnChanges {
 
     this.consumoService.postPedido(this.consumoId, pedido).subscribe(() => {
       console.log('Pedido enviado:', pedido);
+      this.consumoService.putAtualizarValorConsumo(this.mesaId!).subscribe(() => {
+        console.log('Mesa ID:', this.mesaId);
+      });
     });
 
   }
