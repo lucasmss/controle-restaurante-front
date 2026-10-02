@@ -1,0 +1,105 @@
+<p>atualizar-pedido works!</p>
+<div class="modal fade" id="modalAtualizarItemPedido" tabindex="-1" aria-labelledby="modalAtualizarItemPedidoLabel"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <!-- Cabeçalho -->
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="modalAtualizarItemPedidoLabel">
+
+                    Atualizar Item do Pedido
+
+                </h5>
+
+                <button id="btnFecharModalAtualizarItemPedido" type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Fechar" title="Fechar">
+                </button>
+
+            </div>
+
+            <!-- Corpo -->
+            <div class="modal-body">
+
+                <div class="row g-3">
+
+                    <!-- ID -->
+                    <div class="col-md-4">
+
+                        <label class="form-label">
+                            ID
+                        </label>
+
+                        <input type="number" class="form-control" [(ngModel)]="atualizarItem.id" disabled>
+
+                    </div>
+
+                    <!-- Produto -->
+                    <div class="col-md-8">
+
+                        <label class="form-label">
+                            Produto
+                        </label>
+
+                        <select class="form-select" [(ngModel)]="produtoSelecionadoId">
+
+                            <option [ngValue]="null">
+                                Selecione um produto
+                            </option>
+
+                            @for (produto of produtos; track produto.id) {
+
+                            @if (produto.ativo) {
+
+                            <option [ngValue]="produto.id">
+                                {{ produto.codigo }} - {{ produto.name }}
+                            </option>
+
+                            }
+
+                            }
+
+                        </select>
+
+                    </div>
+
+                    <!-- Quantidade -->
+                    <div class="col-md-4">
+
+                        <label class="form-label">
+                            Quantidade
+                        </label>
+
+                        <input type="number" class="form-control" min="1" [(ngModel)]="atualizarItem.quantidade">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Rodapé -->
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+
+                    Cancelar
+
+                </button>
+
+                <button type="button" class="btn btn-success" (click)="atualizarItemPedido()">
+
+                    Atualizar Item
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

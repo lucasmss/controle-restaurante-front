@@ -98,6 +98,9 @@
 
       </div>
 
+      <app-atualizar-pedido [item]="itemSelecionado" (itemAtualizado)="carregarPedidos(consumoId)">
+      </app-atualizar-pedido>
+
     </div>
 
 
@@ -157,8 +160,11 @@
 
               <td class="text-center">
 
-                <button type="button" class="btn btn-sm btn-outline-primary me-2" (click)="editarPedido(pedido.id)">
+                <button type="button" class="btn btn-sm btn-outline-primary me-2" data-bs-toggle="modal"
+                  data-bs-target="#modalAtualizarItemPedido" (click)="editarItemPedido(item)">
+
                   ✏️
+
                 </button>
 
                 <button type="button" class="btn btn-sm btn-outline-danger" (click)="removerPedido(pedido.id)">
@@ -180,7 +186,6 @@
       </div>
 
     </div>
-
     }
 
   </div>
