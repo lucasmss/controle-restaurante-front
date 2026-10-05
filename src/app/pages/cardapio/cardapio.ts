@@ -4,6 +4,7 @@ import { Produto } from '../../models/produto.model';
 import { AdicionarProdutoComponent } from './adicionar-produto/adicionar-produto';
 import { AtualizarProdutoComponent } from './atualizar-produto/atualizar-produto';
 import { CurrencyPipe } from '@angular/common';
+import { TesteFilhoComponent } from '../estudos/teste-filho/teste-filho';
 
 @Component({
   imports: [AdicionarProdutoComponent, AtualizarProdutoComponent, CurrencyPipe],
