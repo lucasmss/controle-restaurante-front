@@ -25,6 +25,8 @@ export class ConsumoComponent implements OnInit {
   pedidos = signal<Pedido[]>([]);
   consumoId!: number;
 
+  mesaId: number | null = null;
+
   itemSelecionado: ItemPedido | null = null;
 
   ngOnInit() {

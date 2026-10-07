@@ -98,7 +98,7 @@
 
       </div>
 
-      <app-atualizar-pedido [item]="itemSelecionado" (itemAtualizado)="carregarPedidos(consumoId)">
+      <app-atualizar-pedido [item]="itemSelecionado" [mesaId]="c.mesa.id" (itemAtualizado)="carregarPedidos(consumoId)">
       </app-atualizar-pedido>
 
     </div>

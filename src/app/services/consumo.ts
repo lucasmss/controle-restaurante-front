@@ -35,14 +35,12 @@ export class ConsumoService {
     }
 
     putAtualizarValorConsumo(mesaId: number) {
-        return this.http.put<Consumo>(`http://localhost:8080/mesas/${mesaId}/consumos`, {});
+        return this.http.put<Consumo>(`http://localhost:8080/mesas/${mesaId}/consumo`, {});
     }
 
     putItemPedido(itemPedidoId: number, item: any) {
         return this.http.put(
-            `http://localhost:8080/itemPedido/${itemPedidoId}/atualizarItemPedido`,
-            item
-        );
+            `http://localhost:8080/itemPedido/${itemPedidoId}/atualizarItemPedido`, item);
     }
 
     postConsumo(mesaId: number) {
