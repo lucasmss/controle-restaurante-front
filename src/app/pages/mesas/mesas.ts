@@ -41,7 +41,15 @@ export class MesasComponent implements OnInit {
   }
 
   abrirConsumo(mesaId: number) {
-    this.consumoService.postConsumo(mesaId).subscribe((res) => { });
+    this.consumoService.postConsumo(mesaId).subscribe({
+      next: () => {
+        console.error('Mesa aberta com sucesso');
+        this.carregarConsumosAbertos();
+      },
+      error: (erro) => {
+        console.error('Erro ao abrir consumo:', erro);
+      }
+    });
   }
 
   consumoPagina(mesaId: number) {

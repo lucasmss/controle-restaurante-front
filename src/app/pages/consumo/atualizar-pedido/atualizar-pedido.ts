@@ -33,6 +33,8 @@ export class AtualizarPedidoComponent implements OnInit, OnChanges {
 
   @Input() mesaId: number | null = null;
 
+  @Input() consumoId: number | null = null;
+
   @Output() itemAtualizado = new EventEmitter<void>();
 
   produtos: Produto[] = [];
@@ -149,6 +151,9 @@ export class AtualizarPedidoComponent implements OnInit, OnChanges {
         this.consumoService.putAtualizarValorConsumo(this.mesaId!).subscribe(() => {
           console.log('Mesa ID:', this.mesaId);
         });
+
+        this.consumoService.getConsumoById(this.consumoId!).subscribe(() => { });
+
 
         console.log(
           'Item do pedido atualizado com sucesso'

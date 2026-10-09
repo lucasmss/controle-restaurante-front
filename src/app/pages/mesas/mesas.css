@@ -9,16 +9,17 @@ main {
 }
 
 .mesa-disponivel {
-  background-color: #198754;
-  color: white;
+    background-color: #198754;
+    color: white;
 }
 
 .mesa-ocupada {
-  background-color: #dc3545;
-  color: white;
+    background-color: #dc3545;
+    color: white;
 }
 
-.mesa-disponivel:hover {
+.mesa-disponivel:hover,
+.mesa-ocupada:hover {
     transform: translateY(-4px);
 }
 

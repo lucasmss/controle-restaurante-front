@@ -98,7 +98,8 @@
 
       </div>
 
-      <app-atualizar-pedido [item]="itemSelecionado" [mesaId]="c.mesa.id" (itemAtualizado)="carregarPedidos(consumoId)">
+      <app-atualizar-pedido [consumoId]="c.id" [item]="itemSelecionado" [mesaId]="c.mesa.id"
+        (itemAtualizado)="carregarPedidos(c.id)">
       </app-atualizar-pedido>
 
     </div>
@@ -167,7 +168,8 @@
 
                 </button>
 
-                <button type="button" class="btn btn-sm btn-outline-danger" (click)="removerPedido(pedido.id)">
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                  (click)="removerPedido(pedido.id, c.mesa.id)">
                   🗑️
                 </button>
 
@@ -180,6 +182,21 @@
             }
 
           </tbody>
+          <tfoot>
+            <tr class="table-dark">
+              <td colspan="4" class="text-end">
+                <strong>Total consumido:</strong>
+              </td>
+
+              <td>
+                <strong>
+                  {{ totalConsumido() | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+                </strong>
+              </td>
+
+              <td></td>
+            </tr>
+          </tfoot>
 
         </table>
 
