@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class PagamentoService {
     constructor(private http: HttpClient) { }
 
-    postPagamento(consumoId: number, boolean: false) {
-        return this.http.post(`http://localhost:8080/consumos/${consumoId}/pagamento`, false);
+    postPagamento(consumoId: number, taxaServicoAceita: boolean) {
+        return this.http.post(`http://localhost:8080/consumos/${consumoId}/pagamento`, taxaServicoAceita);
     }
 }

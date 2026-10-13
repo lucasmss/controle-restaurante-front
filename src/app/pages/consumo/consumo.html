@@ -101,9 +101,30 @@
       <app-atualizar-pedido [consumoId]="c.id" [item]="itemSelecionado" [mesaId]="c.mesa.id"
         (itemAtualizado)="carregarPedidos(c.id)">
       </app-atualizar-pedido>
+      <app-adicionar-pedido [mesaNumero]="mesaSelecionada">
+      </app-adicionar-pedido>
+      <app-fechar-consumo [consumo]="c" [pedidos]="pedidos()" (fechamentoConfirmado)="voltarParaMesas()">
+      </app-fechar-consumo>
 
     </div>
 
+    <!-- AÇÕES DO CONSUMO -->
+    <div class="d-flex justify-content-end flex-wrap gap-2 mb-4">
+
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAdicionarPedido"
+        (click)="adicionarPedido(c.mesa.numero)">
+
+        + Adicionar Pedido
+
+      </button>
+
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalPagarConta">
+
+        💳 Pagar Conta
+
+      </button>
+
+    </div>
 
     <!-- ITENS CONSUMIDOS -->
     @if (pedidos().length > 0) {

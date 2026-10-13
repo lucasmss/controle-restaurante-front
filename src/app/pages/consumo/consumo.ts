@@ -1,14 +1,17 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConsumoService } from '../../services/consumo';
 import { Consumo } from '../../models/consumo.model';
 import { Pedido } from '../../models/pedido.model';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { ItemPedido } from '../../models/item-pedido.model';
 import { AtualizarPedidoComponent } from './atualizar-pedido/atualizar-pedido';
+import { AdicionarPedidoComponent } from './adicionar-pedido/adicionar-pedido';
+import { PagamentoService } from '../../services/pagamento';
+import { FecharConsumoComponent } from './fechar-consumo/fechar-consumo';
 
 @Component({
-  imports: [CurrencyPipe, DatePipe, AtualizarPedidoComponent],
+  imports: [CurrencyPipe, DatePipe, AtualizarPedidoComponent, AdicionarPedidoComponent, FecharConsumoComponent],
   selector: 'app-consumo',
   styleUrl: './consumo.css',
   templateUrl: './consumo.html',
@@ -17,11 +20,19 @@ export class ConsumoComponent implements OnInit {
 
   constructor(
     private consumoService: ConsumoService,
+    private pagamentoService: PagamentoService,
     private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   consumo = signal<Consumo | null>(null);
   pedidos = signal<Pedido[]>([]);
+
+  mesaSelecionada: number | null = null;
+
+  adicionarPedido(mesaNumero: number) {
+    this.mesaSelecionada = mesaNumero;
+  }
 
   totalConsumido = computed(() =>
     this.pedidos().reduce(
@@ -124,6 +135,9 @@ export class ConsumoComponent implements OnInit {
         console.error('Erro ao remover pedido:', erro);
       }
     });
+  }
+  voltarParaMesas() {
+    this.router.navigate(['/mesas']);
   }
 
 }
