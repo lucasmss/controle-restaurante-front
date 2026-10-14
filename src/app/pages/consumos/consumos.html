@@ -30,7 +30,7 @@
 
     <div class="row g-4">
 
-      @for (consumo of consumosAbertos(); track consumo.id) {
+      @for (consumo of consumosAbertos(); track $index) {
 
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
 
@@ -66,13 +66,13 @@
 
       </div>
 
-      <app-fechar-consumo [consumo]="consumo" [pedidos]="pedidos()" (fechamentoConfirmado)="voltarParaMesas()">
-      </app-fechar-consumo>
       }
     </div>
   </div>
   <app-adicionar-pedido [mesaNumero]="mesaSelecionada" (pedidoAdicionado)="carregarConsumosAbertos()">
   </app-adicionar-pedido>
+  <app-fechar-consumo [consumo]="consumo()" [pedidos]="pedidos()" (fechamentoConfirmado)="voltarParaMesas()">
+  </app-fechar-consumo>
 </main>
 
 <footer class="bg-dark text-white text-center py-3">

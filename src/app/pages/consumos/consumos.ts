@@ -29,9 +29,32 @@ export class ConsumosComponent implements OnInit {
   pedidos = signal<Pedido[]>([]);
   consumoId!: number;
   mesaSelecionada: number | null = null;
+  consumo = signal<Consumo | null>(null);
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.carregarConsumosAbertos();
+  }
+
+  carregarConsumoId(consumoId: number) {
+
+    this.consumoService
+      .getConsumoById(consumoId)
+      .subscribe({
+        next: (consumo) => {
+
+          console.log('Consumo recebido:', consumo);
+
+          this.consumo.set(consumo);
+
+        },
+
+        error: (erro) => {
+
+          console.error('Erro ao buscar consumo:', erro);
+
+        }
+      });
+
   }
 
   carregarConsumosAbertos() {
@@ -52,6 +75,7 @@ export class ConsumosComponent implements OnInit {
           console.log('Pedidos recebidos:', pedidos);
 
           this.pedidos.set(pedidos);
+          this.carregarConsumoId(consumoId);
 
         },
 
