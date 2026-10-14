@@ -55,7 +55,8 @@
               Ver Consumo
             </button>
 
-            <button class="btn btn-danger" (click)="pagarConsumo(consumo.id)">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalPagarConta"
+              (click)="carregarPedidos(consumo.id)">
               Pagar Consumo
             </button>
 
@@ -65,14 +66,13 @@
 
       </div>
 
+      <app-fechar-consumo [consumo]="consumo" [pedidos]="pedidos()" (fechamentoConfirmado)="voltarParaMesas()">
+      </app-fechar-consumo>
       }
-
     </div>
-
-    <app-adicionar-pedido [mesaNumero]="mesaSelecionada">
-    </app-adicionar-pedido>
-
   </div>
+  <app-adicionar-pedido [mesaNumero]="mesaSelecionada" (pedidoAdicionado)="carregarConsumosAbertos()">
+  </app-adicionar-pedido>
 </main>
 
 <footer class="bg-dark text-white text-center py-3">

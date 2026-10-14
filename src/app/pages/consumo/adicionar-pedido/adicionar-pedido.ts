@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 
 import { ProdutoService } from '../../../services/produto';
@@ -15,6 +15,7 @@ import { Produto } from '../../../models/produto.model';
 export class AdicionarPedidoComponent implements OnInit, OnChanges {
 
   @Input() mesaNumero: number | null = null;
+  @Output() pedidoAdicionado = new EventEmitter<number | null>();
 
   produtos: Produto[] = [];
 
@@ -131,12 +132,29 @@ export class AdicionarPedidoComponent implements OnInit, OnChanges {
       }))
     };
 
-    this.consumoService.postPedido(this.consumoId, pedido).subscribe(() => {
-      console.log('Pedido enviado:', pedido);
-      this.consumoService.putAtualizarValorConsumo(this.mesaId!).subscribe(() => {
-        console.log('Mesa ID:', this.mesaId);
-      });
+    this.consumoService.postPedido(this.consumoId, pedido).subscribe({
+      next: () => {
+        console.log('Pedido enviado:', pedido);
+        this.consumoService.putAtualizarValorConsumo(this.mesaId!).subscribe(() => {
+          console.log('Mesa ID:', this.mesaId);
+        });
+        this.buscarConsumoDaMesa();
+        this.pedidoAdicionado.emit();
+        this.fecharModal();
+      }, error: (error) => {
+        console.error('Erro ao enviar pedido:', error);
+      }
     });
+
+  }
+
+  fecharModal() {
+
+    const botaoFechar = document.getElementById(
+      'btnFecharModalAdicionarPedido'
+    );
+
+    botaoFechar?.click();
 
   }
 

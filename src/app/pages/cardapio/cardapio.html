@@ -116,7 +116,8 @@
       </div>
 
     </div>
-    <app-adicionar-produto></app-adicionar-produto>
+    <app-adicionar-produto (produtoAdicionado)="carregarCardapio()">
+    </app-adicionar-produto>
     <app-atualizar-produto [produto]="produtoSelecionado" (produtoAtualizado)="carregarCardapio()">
     </app-atualizar-produto>
   </div>

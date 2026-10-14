@@ -27,12 +27,10 @@ export class ConsumoComponent implements OnInit {
 
   consumo = signal<Consumo | null>(null);
   pedidos = signal<Pedido[]>([]);
-
+  consumoId!: number;
+  mesaId: number | null = null;
+  itemSelecionado: ItemPedido | null = null;
   mesaSelecionada: number | null = null;
-
-  adicionarPedido(mesaNumero: number) {
-    this.mesaSelecionada = mesaNumero;
-  }
 
   totalConsumido = computed(() =>
     this.pedidos().reduce(
@@ -47,12 +45,6 @@ export class ConsumoComponent implements OnInit {
       0
     )
   );
-
-  consumoId!: number;
-
-  mesaId: number | null = null;
-
-  itemSelecionado: ItemPedido | null = null;
 
   ngOnInit() {
 
@@ -112,6 +104,10 @@ export class ConsumoComponent implements OnInit {
 
   }
 
+  adicionarPedido(mesaNumero: number) {
+    this.mesaSelecionada = mesaNumero;
+  }
+
   editarItemPedido(item: ItemPedido) {
     this.itemSelecionado = {
       ...item,
@@ -136,6 +132,7 @@ export class ConsumoComponent implements OnInit {
       }
     });
   }
+
   voltarParaMesas() {
     this.router.navigate(['/mesas']);
   }

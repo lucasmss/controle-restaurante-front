@@ -101,7 +101,7 @@
       <app-atualizar-pedido [consumoId]="c.id" [item]="itemSelecionado" [mesaId]="c.mesa.id"
         (itemAtualizado)="carregarPedidos(c.id)">
       </app-atualizar-pedido>
-      <app-adicionar-pedido [mesaNumero]="mesaSelecionada">
+      <app-adicionar-pedido [mesaNumero]="mesaSelecionada" (pedidoAdicionado)="carregarPedidos(c.id)">
       </app-adicionar-pedido>
       <app-fechar-consumo [consumo]="c" [pedidos]="pedidos()" (fechamentoConfirmado)="voltarParaMesas()">
       </app-fechar-consumo>

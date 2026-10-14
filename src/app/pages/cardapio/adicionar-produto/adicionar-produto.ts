@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProdutoService } from '../../../services/produto';
 import { Produto } from '../../../models/produto.model';
@@ -13,6 +13,8 @@ export class AdicionarProdutoComponent implements OnInit {
 
   constructor(private produtoService: ProdutoService) { }
 
+  @Output() produtoAdicionado = new EventEmitter<void>();
+
   inserirProduto: {
     codigo: number | null;
     name: string;
@@ -25,7 +27,8 @@ export class AdicionarProdutoComponent implements OnInit {
       }
     ];
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   adicionarItem() {
     this.inserirProduto.push({
@@ -58,6 +61,8 @@ export class AdicionarProdutoComponent implements OnInit {
       this.produtoService.postProduto(novoProduto).subscribe({
         next: () => {
           console.log('Produto cadastrado:', novoProduto);
+          this.fecharModal();
+          this.produtoAdicionado.emit();
         },
         error: (erro) => {
           console.error('Erro ao cadastrar produto:', erro);
@@ -67,4 +72,8 @@ export class AdicionarProdutoComponent implements OnInit {
     });
   }
 
+  fecharModal() {
+    const botaoFechar = document.getElementById('btnFecharModalAdicionarProduto');
+    botaoFechar?.click();
+  }
 }
