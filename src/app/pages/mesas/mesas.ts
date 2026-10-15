@@ -4,9 +4,11 @@ import { Mesa } from '../../models/mesa.model';
 import { Consumo } from '../../models/consumo.model';
 import { Router } from '@angular/router';
 import { AdicionarMesaComponent } from './adicionar-mesa/adicionar-mesa';
+import { RemoverMesaComponent } from './remover-mesa/remover-mesa';
+import { ReservarMesaComponent } from './reservar-mesa/reservar-mesa';
 
 @Component({
-  imports: [AdicionarMesaComponent],
+  imports: [AdicionarMesaComponent, RemoverMesaComponent, ReservarMesaComponent],
   selector: 'app-mesas',
   styleUrl: './mesas.css',
   templateUrl: './mesas.html',

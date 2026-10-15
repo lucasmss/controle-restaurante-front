@@ -28,11 +28,23 @@
       Selecione uma mesa para abrir um consumo
     </p>
 
-    <div class="d-flex justify-content-end flex-wrap gap-2 mb-4">
+    <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
 
       <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAdicionarMesa">
 
         + Adicionar Mesa
+
+      </button>
+
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalReservarMesa">
+
+        > Reservar Mesa
+
+      </button>
+
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalRemoverMesa">
+
+        - Remover Mesa
 
       </button>
 
@@ -89,6 +101,8 @@
     </div>
 
     <app-adicionar-mesa (mesaAdicionada)="carregarMesas()"></app-adicionar-mesa>
+    <app-remover-mesa (mesaRemovida)="carregarMesas()"></app-remover-mesa>
+    <app-reservar-mesa (mesaReservada)="carregarMesas()"></app-reservar-mesa>
 
   </div>
 </main>

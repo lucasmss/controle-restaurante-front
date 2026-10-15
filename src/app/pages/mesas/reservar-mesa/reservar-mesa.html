@@ -1,0 +1,56 @@
+<!-- MODAL RESERVAR MESA -->
+<div class="modal fade" id="modalReservarMesa" tabindex="-1" aria-labelledby="modalReservarMesaLabel"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <!-- Cabeçalho -->
+            <div class="modal-header bg-dark text-white">
+
+                <h5 class="modal-title" id="modalReservarMesaLabel">
+                    Reservar Mesa
+                </h5>
+
+                <button id="btnFecharModalReservarMesa" type="button" class="btn-close btn-close-white"
+                    data-bs-dismiss="modal" aria-label="Fechar">
+                </button>
+
+            </div>
+
+            <!-- Corpo -->
+            <div class="modal-body">
+
+                <label for="numeroMesa" class="form-label">
+                    Número da mesa
+                </label>
+
+                <input id="numeroMesa" type="number" class="form-control" min="1" step="1" placeholder="Ex.: 27"
+                    [(ngModel)]="mesaNumero">
+
+            </div>
+
+            <!-- Rodapé -->
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+
+                    Cancelar
+
+                </button>
+
+                <button type="button" class="btn btn-warning" [disabled]="mesaNumero === null || mesaNumero < 1"
+                    (click)="reservarMesa()">
+
+                    Reservar Mesa
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

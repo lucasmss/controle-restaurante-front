@@ -55,6 +55,10 @@ export class ConsumoService {
         return this.http.delete(`http://localhost:8080/pedidos/${pedidoId}`);
     }
 
+    deleteMesa(mesaNumero: number) {
+        return this.http.delete(`http://localhost:8080/mesas/${mesaNumero}`);
+    }
+
     postMesa(mesaNumero: number) {
         return this.http.post<Mesa>(`http://localhost:8080/mesas`, { numero: mesaNumero });
     }
