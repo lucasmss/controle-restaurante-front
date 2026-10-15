@@ -9,16 +9,17 @@ main {
 }
 
 .mesa-disponivel {
-  background-color: #198754;
-  color: white;
+    background-color: #198754;
+    color: white;
 }
 
 .mesa-ocupada {
-  background-color: #dc3545;
-  color: white;
+    background-color: #999999;
+    color: white;
 }
 
-.mesa-disponivel:hover {
+.mesa-disponivel:hover,
+.mesa-ocupada:hover {
     transform: translateY(-4px);
 }
 
@@ -29,4 +30,9 @@ main {
 .mesa-icone {
     font-size: 40px;
     margin-bottom: 10px;
+}
+
+button {
+    margin: 5px;
+    padding: 3px;
 }

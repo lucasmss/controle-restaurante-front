@@ -38,24 +38,24 @@
 
           <div class="card-body text-center">
 
+            <div class="mesa-icone">
+              🍽️
+            </div>
+
             <h3 class="card-title">
               Mesa {{ consumo.mesa.numero }}
             </h3>
-
-            <h5 class="card-text">
-              {{ consumo.status }}
-            </h5>
 
             <button type="button" class="btn btn-success" (click)="adicionarPedido(consumo.mesa.numero)"
               data-bs-toggle="modal" data-bs-target="#modalAdicionarPedido">
               Adicionar Pedido
             </button>
 
-            <button class="btn btn-success" (click)="consumoMesaPagina(consumo.id)">
+            <button type="button" class="btn btn-success" (click)="consumoMesaPagina(consumo.id)">
               Ver Consumo
             </button>
 
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalPagarConta"
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPagarConta"
               (click)="carregarPedidos(consumo.id)">
               Pagar Consumo
             </button>
