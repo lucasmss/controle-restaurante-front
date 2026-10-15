@@ -28,6 +28,16 @@
       Selecione uma mesa para abrir um consumo
     </p>
 
+    <div class="d-flex justify-content-end flex-wrap gap-2 mb-4">
+
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAdicionarMesa">
+
+        + Adicionar Mesa
+
+      </button>
+
+    </div>
+
     <div class="row g-4">
 
       @for (mesa of mesas(); track mesa.id) {
@@ -77,6 +87,8 @@
       }
 
     </div>
+
+    <app-adicionar-mesa (mesaAdicionada)="carregarMesas()"></app-adicionar-mesa>
 
   </div>
 </main>

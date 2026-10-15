@@ -3,9 +3,10 @@ import { ConsumoService } from '../../services/consumo';
 import { Mesa } from '../../models/mesa.model';
 import { Consumo } from '../../models/consumo.model';
 import { Router } from '@angular/router';
+import { AdicionarMesaComponent } from './adicionar-mesa/adicionar-mesa';
 
 @Component({
-  imports: [],
+  imports: [AdicionarMesaComponent],
   selector: 'app-mesas',
   styleUrl: './mesas.css',
   templateUrl: './mesas.html',
@@ -16,6 +17,7 @@ export class MesasComponent implements OnInit {
 
   mesas = signal<Mesa[]>([]);
   consumosAbertos = signal<Consumo[]>([]);
+  mesaAdicionada = signal<Mesa | null>(null);
 
   ngOnInit() {
     this.carregarMesas();
@@ -58,5 +60,6 @@ export class MesasComponent implements OnInit {
     });
 
   }
+
 }
 
