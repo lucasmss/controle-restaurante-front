@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RemoverMesa } from './remover-mesa';
+import { RemoverMesaComponent } from './remover-mesa';
 
-describe('RemoverMesa', () => {
-  let component: RemoverMesa;
-  let fixture: ComponentFixture<RemoverMesa>;
+describe('RemoverMesaComponent', () => {
+  let component: RemoverMesaComponent;
+  let fixture: ComponentFixture<RemoverMesaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RemoverMesa],
+      imports: [RemoverMesaComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RemoverMesa);
+    fixture = TestBed.createComponent(RemoverMesaComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
