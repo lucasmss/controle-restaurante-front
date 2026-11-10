@@ -47,7 +47,7 @@ export class MesasComponent implements OnInit {
   abrirConsumo(mesaId: number) {
     this.consumoService.postConsumo(mesaId).subscribe({
       next: () => {
-        console.error('Mesa aberta com sucesso');
+        console.log('Mesa aberta com sucesso');
         this.carregarConsumosAbertos();
       },
       error: (erro) => {
