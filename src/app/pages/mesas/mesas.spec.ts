@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MesasComponent } from './mesas';
 import { ConsumoService } from '../../services/consumo';
 import { of } from 'rxjs';
+import { vi } from 'vitest';
 import { provideRouter } from '@angular/router';
 import { Consumo } from '../../models/consumo.model';
 
@@ -13,7 +14,8 @@ describe('MesasComponent', () => {
   const consumoServiceMock = {
 
     getMesas: () => of([]),
-    getConsumosAbertos: () => of([])
+    getConsumosAbertos: vi.fn(() => of([])),
+    postConsumo: vi.fn(() => of(null))
 
   };
 
@@ -87,5 +89,22 @@ describe('MesasComponent', () => {
 
   });
 
+  it('deveEnviarIdDaMesaAoAbrirConsumo', () => {
+
+    component.abrirConsumo(5);
+
+    expect(consumoServiceMock.postConsumo).toHaveBeenCalledWith(5);
+
+  });
+
+  it('deveAtualizarConsumosAbertosAposAbrirConsumo', () => {
+
+    consumoServiceMock.getConsumosAbertos.mockClear();
+
+    component.abrirConsumo(5);
+
+    expect(consumoServiceMock.getConsumosAbertos).toHaveBeenCalledTimes(1);
+
+  });
 
 });
