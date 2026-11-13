@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MesasComponent } from './mesas';
 import { ConsumoService } from '../../services/consumo';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { vi } from 'vitest';
 import { provideRouter } from '@angular/router';
 import { Consumo } from '../../models/consumo.model';
@@ -104,6 +104,19 @@ describe('MesasComponent', () => {
     component.abrirConsumo(5);
 
     expect(consumoServiceMock.getConsumosAbertos).toHaveBeenCalledTimes(1);
+
+  });
+
+  it('deveNaoAtualizarConsumosAbertosQuandoAbrirConsumoFalhar', () => {
+
+    consumoServiceMock.getConsumosAbertos.mockClear();
+
+    consumoServiceMock.postConsumo.mockReturnValueOnce(
+      throwError(() => new Error('Erro ao abrir consumo')));
+
+    component.abrirConsumo(5);
+
+    expect(consumoServiceMock.getConsumosAbertos).not.toHaveBeenCalled();
 
   });
 
