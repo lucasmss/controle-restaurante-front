@@ -3,7 +3,7 @@ import { MesasComponent } from './mesas';
 import { ConsumoService } from '../../services/consumo';
 import { of, throwError } from 'rxjs';
 import { vi } from 'vitest';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { Consumo } from '../../models/consumo.model';
 
 describe('MesasComponent', () => {
@@ -15,7 +15,8 @@ describe('MesasComponent', () => {
 
     getMesas: () => of([]),
     getConsumosAbertos: vi.fn(() => of([])),
-    postConsumo: vi.fn(() => of(null))
+    postConsumo: vi.fn(() => of(null)),
+    getConsumoByMesaId: vi.fn(() => of({ id: 10 } as Consumo))
 
   };
 
@@ -117,6 +118,22 @@ describe('MesasComponent', () => {
     component.abrirConsumo(5);
 
     expect(consumoServiceMock.getConsumosAbertos).not.toHaveBeenCalled();
+
+  });
+
+  it('deveNavegarParaPaginaDeConsumoAoChamarConsumoPagina', () => {
+
+    const router = TestBed.inject(Router);
+
+    const navegarSpy = vi.spyOn(router, 'navigate');
+
+    navegarSpy.mockResolvedValue(true);
+
+    component.consumoPagina(5);
+
+    expect(consumoServiceMock.getConsumoByMesaId).toHaveBeenCalledWith(5);
+
+    expect(navegarSpy).toHaveBeenCalledWith([10, 'consumos']);
 
   });
 

@@ -10,6 +10,7 @@ import { AdicionarPedidoComponent } from './adicionar-pedido/adicionar-pedido';
 import { PagamentoService } from '../../services/pagamento';
 import { FecharConsumoComponent } from './fechar-consumo/fechar-consumo';
 
+
 @Component({
   imports: [CurrencyPipe, DatePipe, AtualizarPedidoComponent, AdicionarPedidoComponent, FecharConsumoComponent],
   selector: 'app-consumo',

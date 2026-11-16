@@ -19,9 +19,7 @@ export class ConsumosComponent implements OnInit {
 
   constructor(
     private consumoService: ConsumoService,
-    private pagamentoService: PagamentoService,
     private router: Router,
-    private route: ActivatedRoute
 
   ) { }
 
