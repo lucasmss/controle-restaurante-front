@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
-
 import { ProdutoService } from '../../../services/produto';
 import { ConsumoService } from '../../../services/consumo';
-
 import { Produto } from '../../../models/produto.model';
 
 @Component({
