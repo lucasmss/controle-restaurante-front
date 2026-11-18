@@ -3,13 +3,19 @@ import { AdicionarPedidoComponent } from './adicionar-pedido';
 import { ConsumoService } from '../../../services/consumo';
 import { ProdutoService } from '../../../services/produto';
 import { of } from 'rxjs';
+import { Produto } from '../../../models/produto.model';
 
 describe('AdicionarPedidoComponent', () => {
   let component: AdicionarPedidoComponent;
   let fixture: ComponentFixture<AdicionarPedidoComponent>;
 
+  const produtosMock = [
+    { ativo: true } as Produto,
+    { ativo: false } as Produto
+  ];
+
   const ProdutoServiceMock = {
-    getProdutos: () => of([])
+    getProdutos: () => of(produtosMock)
   }
 
   const ConsumoServiceMock = {
@@ -34,4 +40,42 @@ describe('AdicionarPedidoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('deveCarregarApenasProdutosAtivos', () => {
+
+    component.carregarProdutos();
+    expect(component.produtos).toHaveLength(1);
+    expect(component.produtos[0].ativo).toBe(true);
+
+  });
+
+  it('deveDiminuirQuantidadeDoItem', () => {
+
+    const item = { produtoId: 1, quantidade: 3 };
+
+    component.diminuirQuantidade(item);
+    expect(item.quantidade).toBe(2);
+
+  });
+
+  it('naoDeveDiminuirQuantidadeDoItemAbaixoDeUm', () => {
+
+    const item = { produtoId: 1, quantidade: 1 };
+
+    component.diminuirQuantidade(item);
+    expect(item.quantidade).toBe(1);
+
+  });
+
+  it('deveAumentarQuantidadeDoItem', () => {
+
+    const item = { produtoId: 1, quantidade: 2 };
+
+    component.aumentarQuantidade(item);
+
+    expect(item.quantidade).toBe(3);
+
+  });
+
+
 });
