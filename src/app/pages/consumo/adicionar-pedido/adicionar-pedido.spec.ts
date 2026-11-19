@@ -77,5 +77,29 @@ describe('AdicionarPedidoComponent', () => {
 
   });
 
+  it('deveAdicionarItem', () => {
+
+    component.adicionarItem();
+    expect(component.itensPedido).toHaveLength(2);
+    expect(component.itensPedido[1]).toEqual({
+      produtoId: null,
+      quantidade: 1
+    });
+
+  });
+
+  it('deveRemoverItem', () => {
+
+    const item1 = { produtoId: 10, quantidade: 2 };
+    const item2 = { produtoId: 20, quantidade: 1 };
+
+    component.itensPedido = [item1, item2];
+
+    component.removerItem(0);
+    expect(component.itensPedido).toHaveLength(1);
+    expect(component.itensPedido[0]).toEqual(item2);
+
+  });
+
 
 });
