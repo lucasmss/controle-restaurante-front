@@ -4,6 +4,8 @@ import { ConsumoService } from '../../../services/consumo';
 import { ProdutoService } from '../../../services/produto';
 import { of } from 'rxjs';
 import { Produto } from '../../../models/produto.model';
+import { vi } from 'vitest';
+import { Consumo } from '../../../models/consumo.model';
 
 describe('AdicionarPedidoComponent', () => {
   let component: AdicionarPedidoComponent;
@@ -19,7 +21,7 @@ describe('AdicionarPedidoComponent', () => {
   }
 
   const ConsumoServiceMock = {
-    getConsumosAbertos: () => of([])
+    getConsumosAbertos: vi.fn(() => of([] as Consumo[]))
 
   }
 
@@ -98,6 +100,27 @@ describe('AdicionarPedidoComponent', () => {
     component.removerItem(0);
     expect(component.itensPedido).toHaveLength(1);
     expect(component.itensPedido[0]).toEqual(item2);
+
+  });
+
+  it('deveBuscarConsumoDaMesaSelecionada', () => {
+    const consumoMock = {
+      id: 50,
+      mesa: {
+        id: 8,
+        numero: 4
+      }
+    } as Consumo;
+
+    ConsumoServiceMock.getConsumosAbertos.mockReturnValueOnce(
+      of([consumoMock])
+    );
+
+    component.mesaNumero = 4;
+    component.buscarConsumoDaMesa();
+
+    expect(component.consumoId).toBe(50);
+    expect(component.mesaId).toBe(8);
 
   });
 
