@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AdicionarPedidoComponent } from './adicionar-pedido';
 import { ConsumoService } from '../../../services/consumo';
 import { ProdutoService } from '../../../services/produto';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { Produto } from '../../../models/produto.model';
 import { vi } from 'vitest';
 import { Consumo } from '../../../models/consumo.model';
@@ -158,4 +158,19 @@ describe('AdicionarPedidoComponent', () => {
     expect(consumoServiceMock.putAtualizarValorConsumo)
       .toHaveBeenCalledWith(8);
   });
+
+  it('naoDeveAtualizarConsumoQuandoEnvioDoPedidoFalhar', () => {
+    component.consumoId = 50;
+    component.mesaId = 8;
+
+    consumoServiceMock.postPedido.mockReturnValueOnce(
+      throwError(() => new Error('Erro ao enviar pedido')));
+
+    component.fazerPedido();
+
+    expect(consumoServiceMock.postPedido).toHaveBeenCalled();
+    expect(consumoServiceMock.putAtualizarValorConsumo).not.toHaveBeenCalled();
+
+  });
+
 });
