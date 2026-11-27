@@ -52,4 +52,25 @@ describe('ProdutoService', () => {
 
   });
 
+  it('deveCadastrarProduto', () => {
+    const produtoMock: Produto = {
+      codigo: 100,
+      name: 'Café Expresso',
+      preco: 8.50,
+      ativo: true
+    };
+
+    service.postProduto(produtoMock).subscribe();
+
+    const requisicao = httpMock.expectOne(
+      'http://localhost:8080/produtos'
+    );
+
+    expect(requisicao.request.method).toBe('POST');
+    expect(requisicao.request.body).toEqual(produtoMock);
+
+    requisicao.flush({});
+
+  });
+
 });
